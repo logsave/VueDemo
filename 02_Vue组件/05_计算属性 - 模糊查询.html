@@ -1,0 +1,57 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title> From Examples 01</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+
+<script type="text/javascript" src="js/vue.js"></script>
+</head>
+<body>
+	<div id="box">
+		<input type="text" @input="handleInput()" v-model="mytext" />
+		
+		<input type="text" v-model="mytext" />
+
+		<ul>
+			<li v-for="data in datalist">
+			  {{data}}
+			</li>
+		</ul>
+	<p>计算属性</p>
+		<ul>
+			<li v-for="data in getMyDatalist">
+			  {{data}}
+			</li>
+		</ul>
+		
+	</div>
+
+	<script type="text/javascript">
+	var vm = new Vue({
+		el: "#box",
+		data: {
+		  mytext: '',
+		  datalist: ["aaa", "bbb", "ccc", "ddd", "add","cee","eee"]
+		},
+
+		computed: {
+		  	getMyDatalist() {
+			  return this.datalist.filter(item => item.indexOf(this.mytext)>-1)
+			}
+		},
+	
+		methods: {
+		//	handleInput() {
+		//	console.log(this.mytext)
+		//	var newlist = this.list.filter(item => item.indexOf(this.mytext)>-1)
+		//	this.datalist = newlist;
+		//	}
+		// 此种方式将数据重复进行存储。	
+		},
+	})
+	</script>
+</body> 
+</html>

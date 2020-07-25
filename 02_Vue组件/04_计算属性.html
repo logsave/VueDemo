@@ -1,0 +1,45 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title> From Examples 01</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+
+<script type="text/javascript" src="js/vue.js"></script>
+</head>
+<body>
+	<div id="box">
+		<p>{{myname.substring(0,1).toUpperCase() + myname.substring(1)}}</p>
+		
+		<p>计算属性：{{getMyName}} </p>
+		<p>普通方法：{{getMyNameMethod()}}</p>
+
+		<p>计算属性：{{getMyName}} </p>
+		<p>普通方法：{{getMyNameMethod()}}</p>
+	</div>
+
+	<script type="text/javascript">
+	var vm = new Vue({
+		el: "#box",
+		data: {
+		  myname: "kerwen"
+		},
+	
+		methods: {
+			getMyNameMethod() {
+			console.log('getMyNameMethod-调用')
+			  return this.myname.substring(0,1).toUpperCase() + this.myname.substring(1)
+			}
+		},
+		computed: {
+		  	getMyName() {
+			  console.log('getMyName-调用')
+			  return this.myname.substring(0,1).toUpperCase() + this.myname.substring(1)
+			}	// 依赖的状态改变，计算属性会重新计算一遍
+		}
+	})
+	</script>
+</body> 
+</html>
